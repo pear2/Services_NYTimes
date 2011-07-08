@@ -145,6 +145,7 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
             array('limit', 10,),
             array('offset', 5,),
             array('period', 24),
+            array('period', 0),
         );
     }
 
