@@ -85,8 +85,11 @@ class Newswire extends Base implements NYTimesInterface
         $body = $response->getBody();
         if ($this->format == 'json') {
             $data = json_decode($body);
+        } elseif ($this->format == 'xml') {
+            $data = new \DOMDocument();
+            $data->loadXML($body);
         } else {
-            throw new Exception("Not implemented.");
+            throw new \Exception("Not implemented.");
         }
         return $data;
     }
