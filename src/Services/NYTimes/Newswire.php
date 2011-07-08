@@ -33,6 +33,15 @@ class Newswire extends Base implements NYTimesInterface
 
     protected $baseUri = 'http://api.nytimes.com/svc/news/v3/content';
 
+    /**
+     * Return meta data about an article by URL.
+     *
+     * Only 'recent' articles will work.
+     *
+     * @param string $url The URL of the article
+     *
+     * @return mixed
+     */
     public function getItemByUrl($url)
     {
         try {
@@ -49,14 +58,63 @@ class Newswire extends Base implements NYTimesInterface
         }
     }
 
-    protected function getUri(array $params = null)
+    /**
+     * Get all available sections.
+     *
+     * Protip: cache this so you don't burn through your API calls.
+     *
+     * @return array
+     */
+    public function getSections()
+    {
+        $currentFormat = $this->format;
+
+        // makes it easier for us
+        $this->setResponseFormat('sphp');
+
+        $uri      = $this->getUri(null, 'section-list');
+        $response = $this->makeRequest($uri);
+        $data     = $this->parseResponse($response);
+
+        if ($data['num_results'] == 0 || $data['status'] != 'OK') {
+            throw new \RuntimeException("Error: currently no sections are returned.");
+        }
+
+        $this->setResponseFormat($currentFormat);
+
+        $sections = array();
+        foreach ($data['results'] as $section => $displayName) {
+            if (empty($section)) {
+                continue;
+            }
+            $sections[$section] = $displayName;
+        }
+        return $sections;
+    }
+
+    /**
+     * Build the uri used to make a request.
+     *
+     * @param array  $params   Optional: For the query string.
+     * @param string $endpoint Optional: In case we need to add to
+     *                         {@link self::$baseUri}.
+     *
+     * @return string
+     * @see    self::makeRequest()
+     */
+    protected function getUri(array $params = null, $endpoint = null)
     {
         if ($params === null) {
             $params = array();
         }
         $params['api-key'] = $this->key;
 
-        return $this->baseUri
+        $uri = $this->baseUri;
+        if ($endpoint !== null) {
+            $uri .= '/' . $endpoint;
+        }
+
+        return $uri
             . ".{$this->format}"
             . '?' . http_build_query($params);
     }
