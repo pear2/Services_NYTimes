@@ -4,6 +4,10 @@
  */
 require_once 'PHPUnit/Autoload.php';
 
+if (file_exists(__DIR__ . '/config.php')) {
+    include __DIR__ . '/config.php';
+}
+
 /**
  * testAutoloader
  *
@@ -21,6 +25,9 @@ function testAutoloader($className) {
         $path = realpath(__DIR__ . '/../src');
 
         return include $path . '/' . $file;
+    }
+    if (substr($className, 0, 6) == 'HTTP_R') {
+        return include str_replace('_', '/', $className) . '.php';
     }
     return false;
 }
