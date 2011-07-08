@@ -55,10 +55,19 @@ class Newswire extends Base implements NYTimesInterface
             . '?' . http_build_query($params);
     }
 
+    /**
+     * Make a request! Woo!!!
+     *
+     * @param string $uri
+     *
+     * @return \HTTP_Request2_Response
+     */
     protected function makeRequest($uri)
     {
-        $req = new \HTTP_Request2($uri);
-        return $req->send();
+        if (!($this->req instanceof \HTTP_Request2)) {
+            $this->req = new \HTTP_Request2;
+        }
+        return $this->req->setUrl($uri)->send();
     }
 
     /**

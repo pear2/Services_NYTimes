@@ -35,6 +35,11 @@ abstract class Base
     protected $key;
 
     /**
+     * @var \HTTP_Request2 $req
+     */
+    protected $req;
+
+    /**
      * __construct()
      *
      * @param string $key The API key.
@@ -44,6 +49,22 @@ abstract class Base
     public function __construct($key)
     {
         $this->key = $key;
+    }
+
+    /**
+     * Acceptor pattern.
+     *
+     * @param mixed $mixed
+     *
+     * @return $this
+     */
+    public function accept($mixed)
+    {
+        if ($mixed instanceof \HTTP_Request2) {
+            $this->req = $mixed;
+            return $this;
+        }
+        throw new \DomainException("Problem?");
     }
 
     /**
