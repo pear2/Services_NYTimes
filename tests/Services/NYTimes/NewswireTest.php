@@ -166,10 +166,24 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
     /**
      * Throw an exception for bogus source.
      *
+     * @return void
+     *
      * @expectedException \InvalidArgumentException
      */
     public function testSetSource()
     {
         $this->nw->setSource('Interweb');
+    }
+
+    /**
+     * Throw a RangeException if the period is out of the range.
+     *
+     * @return void
+     *
+     * @expectedException \RangeException
+     */
+    public function testSetPeriod()
+    {
+        $this->nw->setPeriod(1000); // 1–720 supported
     }
 }
