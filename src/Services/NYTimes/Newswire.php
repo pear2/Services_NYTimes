@@ -63,6 +63,14 @@ class Newswire extends Base implements NYTimesInterface
                 throw new \InvalidArgumentException("Cannot set an empty parameter.");
             }
             $param = $this->getParam($method);
+            switch ($param) {
+            case 'source':
+                static $supportedSources = array('all', 'nyt', 'iht');
+                if (!in_array($args[0], $supportedSources)) {
+                    throw new \InvalidArgumentException("Unsupported source: {$args[0]}");
+                }
+                break;
+            }
             $this->searchParams[$param] = $args[0];
             return $this;
         }
