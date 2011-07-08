@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * @category  Yourcategory
+ * @category  Services
  * @package   PEAR2_Services_NYTimes
  * @author    Till Klampaeckel <till@php.net>
  * @copyright 2011 Till Klampaeckel

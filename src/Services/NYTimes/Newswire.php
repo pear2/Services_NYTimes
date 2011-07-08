@@ -1,10 +1,10 @@
 <?php
 /**
- * PEAR2\Services\NYTimes\Main
+ * PEAR2\Services\NYTimes\Newswire
  *
  * PHP version 5
  *
- * @category  Yourcategory
+ * @category  Services
  * @package   PEAR2_Services_NYTimes
  * @author    Till Klampaeckel <till@php.net>
  * @copyright 2011 Till Klampaeckel
@@ -14,7 +14,7 @@
  */
 
 /**
- * Main class for PEAR2_Services_NYTimes
+ * A class interface for the NYTimes Newswire API.
  *
  * @category  Services
  * @package   PEAR2_Services_NYTimes
