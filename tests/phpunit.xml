@@ -1,0 +1,5 @@
+<phpunit bootstrap="./TestInit.php">
+    <testsuite name="NewsWire">
+        <file>./Services/NYTimes/NewswireTest.php</file>
+    </testsuite>
+</phpunit>
