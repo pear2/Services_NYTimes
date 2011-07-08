@@ -115,4 +115,15 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('status', $response);
         $this->assertArrayHasKey('results', $response);
     }
+
+    /**
+     * Return all sections.
+     *
+     * @return void
+     */
+    public function testGetSections()
+    {
+        $sections = $this->nw->getSections();
+        $this->assertInternalType('array', $sections);
+    }
 }
