@@ -27,4 +27,5 @@
 namespace PEAR2\Services\NYTimes;
 interface NYTimesInterface
 {
+    public function __construct($key);
 }
