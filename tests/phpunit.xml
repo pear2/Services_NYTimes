@@ -1,5 +1,6 @@
-<phpunit bootstrap="./TestInit.php">
-    <testsuite name="Base">
+<phpunit bootstrap="./TestInit.php" colors="true">
+    <testsuite name="Main and Base">
+        <file>./Services/NYTimes/MainTest.php</file>    
         <file>./Services/NYTimes/BaseTest.php</file>
     </testsuite>
     <testsuite name="NewsWire">
