@@ -126,6 +126,8 @@ abstract class Base
         switch ($response->getStatus) {
         case 400:
             throw new \RuntimeException("Bad request.");
+        case 403:
+            throw new \RuntimeException("You seem to be rate-limited.");
         case 404:
             throw new \LogicException("Resource does not exist.");
         case 500:
