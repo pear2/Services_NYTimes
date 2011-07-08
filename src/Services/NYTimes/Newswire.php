@@ -62,12 +62,15 @@ class Newswire extends Base implements NYTimesInterface
             if (!isset($args[0]) || (empty($args[0]) && $args[0] !== 0)) {
                 throw new \InvalidArgumentException("Cannot set an empty parameter.");
             }
-            $param = strtolower(substr($method, 4));
+            $param = strtolower(substr($method, 3));
             $this->searchParams[$param] = $args[0];
             return $this;
         }
         if (substr($method, 0, 3) == 'get') {
-            $param = strtolower(substr($method, 4));
+            $param = strtolower(substr($method, 3));
+            if (!isset($this->searchParams[$param])) {
+                throw new \DomainException("Unknown parameter: {$param} (from {$method})");
+            }
             return $this->searchParams[$param];
         }
         throw new \LogicException("Problem?");
@@ -93,13 +96,35 @@ class Newswire extends Base implements NYTimesInterface
     }
 
     /**
-     * Get items.
+     * Get items: <http://api.nytimes.com/svc/news/{version}/content/
+     * {source}/{section}[/time-period][.response-format]?api-key=...>
      *
      * @return array
      */
     public function getItems()
     {
+        $currentFormat = $this->format;
 
+        $endpoint  = $this->getSource();
+        $endpoint .= '/' . $this->getSection();
+
+        $period = $this->getPeriod();
+        if ($period > 0) {
+            $endpoint .= '/' . $period;
+        }
+
+        $params           = array();
+        $params['limit']  = $this->getLimit();
+        $params['offset'] = $this->getOffset();
+
+        $uri = $this->setResponseFormat('sphp')->getUri($params, $endpoint);
+
+        $response = $this->makeRequest($uri);
+        $data     = $this->parseResponse($response);
+
+        $this->setResponseFormat($currentFormat);
+
+        return $data['results'];
     }
 
     /**
