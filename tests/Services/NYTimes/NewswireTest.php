@@ -175,15 +175,26 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
         $this->nw->setSource('Interweb');
     }
 
+    public static function exceptionProvider()
+    {
+        return array(
+            array('setPeriod', 1000, "\\RangeException",), // 0–720 supported
+            array('setLimit', 100, "\\RangeException",),
+            array('setLimit', 'a', "\\InvalidArgumentException",),
+            array('setOffset', 'b', "\\InvalidArgumentException",),
+        );
+    }
+
     /**
-     * Throw a RangeException if the period is out of the range.
+     * Test exceptions from __call().
      *
      * @return void
      *
-     * @expectedException \RangeException
+     * @dataProvider exceptionProvider
      */
-    public function testSetPeriod()
+    public function testSetExceptions($method, $value, $exception)
     {
-        $this->nw->setPeriod(1000); // 1–720 supported
+        $this->setExpectedException($exception);
+        $this->nw->$method($value);
     }
 }
