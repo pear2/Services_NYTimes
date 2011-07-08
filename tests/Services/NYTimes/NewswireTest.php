@@ -4,6 +4,11 @@ namespace PEAR2\Services\NYTimes;
 class NewswireTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var \PEAR2\Services\NYTimes\Newswire
+     */
+    protected $nw;
+
+    /**
      * For now we skip all tests when no api key is defined.
      *
      * @return void
@@ -13,6 +18,7 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
         if (!defined('NEWSWIRE_API_KEY')) {
             $this->markTestSkipped("This requires an API key.");
         }
+        $this->nw = new Newswire(NEWSWIRE_API_KEY);
     }
 
     /**
@@ -22,7 +28,7 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
      */
     public function testNewswireConstruct()
     {
-        $this->assertInstanceOf('PEAR2\Services\NYTimes\Newswire', new Newswire('apikey'));
+        $this->assertInstanceOf('PEAR2\Services\NYTimes\Newswire', $this->nw);
     }
 
     /**
@@ -48,8 +54,7 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetItemByUrl($url)
     {
-        $newswire = new Newswire(NEWSWIRE_API_KEY);
-        $response = $newswire->getItemByUrl($url);
+        $response = $this->nw->getItemByUrl($url);
 
         $this->assertInstanceOf('stdClass', $response);
     }
@@ -61,13 +66,26 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetItemByUrlInExEmHell()
     {
-        $newswire = new Newswire(NEWSWIRE_API_KEY);
-        $response = $newswire
+        $response = $this->nw
             ->setResponseFormat('xml')
             ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
 
         $this->assertInstanceOf('\DOMDocument', $response);
 
         $this->assertEquals('OK', $response->getElementsByTagName('status')->item(0)->nodeValue);
+    }
+
+    /**
+     * Confirm that we can do PHP too.
+     *
+     * @return void
+     */
+    public function testGetItemByUrlInPHP()
+    {
+        $response = $this->nw
+            ->setResponseFormat('php')
+            ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
+
+        var_dump($response);
     }
 }
