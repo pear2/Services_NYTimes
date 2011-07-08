@@ -29,11 +29,12 @@ class Main
     /**
      * A class factory.
      *
-     * @param string $api
+     * @param string $api The name of the API to use.
+     * @param string $key The API Key.
      *
      * @return PEAR2\Services\Base
      */
-    public static function factory($api)
+    public static function factory($api, $key)
     {
         static $supported = array('Newswire');
         $api = ucfirst(strtolower($api));
@@ -44,6 +45,6 @@ class Main
 
         $className = "PEAR2\Services\NYTimes\\" . $api;
 
-        return new $className;
+        return new $className($key);
     }
 }
