@@ -28,6 +28,31 @@ abstract class Base
 {
     protected $format = 'json';
 
+    /**
+     * @var string $key The API key.
+     * @see http://developer.nytimes.com/apps/register
+     */
+    protected $key;
+
+    /**
+     * __construct()
+     *
+     * @param string $key The API key.
+     *
+     * @return $this
+     */
+    public function __construct($key)
+    {
+        $this->key = $key;
+    }
+
+    /**
+     * This set of classes will support a distinct version of each API. This method
+     * allows the developer to return the API's version programmatically.
+     *
+     * @return string
+     * @see    parent::$apiVersion
+     */
     public function getApiVersion()
     {
         return $this->apiVersion;
@@ -53,6 +78,41 @@ abstract class Base
         return $this;
     }
 
+    /**
+     * Determine if the response is valid.
+     *
+     * @param \HTTP_Request2_Response $response
+     *
+     * @return boolean
+     */
+    protected function isSuccessful(\HTTP_Request2_Response $response)
+    {
+        if ($response->getStatus() == 200) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine the problem.
+     *
+     * @return void
+     */
+    protected function hazProblem(\HTTP_Request2_Response $response)
+    {
+        switch ($response->getStatus) {
+        case 400:
+            throw new \RuntimeException("Bad request.");
+        case 404:
+            throw new \LogicException("Resource does not exist.");
+        case 500:
+            throw new \RuntimeException("Please try again later.");
+        default:
+            throw new \DomainException("An error occurred: {$response->getStatus()}");
+        }
+    }
+
+    abstract protected function getUri();
     abstract protected function makeRequest($uri);
-    abstract protected function parseResponse($response);
+    abstract protected function parseResponse(\HTTP_Request2_Response $response);
 }
