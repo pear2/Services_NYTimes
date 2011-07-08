@@ -126,4 +126,39 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
         $sections = $this->nw->getSections();
         $this->assertInternalType('array', $sections);
     }
+
+    /**
+     *
+     * @return void
+     */
+    public function testGetItems()
+    {
+        $response = $this->nw->getItems();
+        $this->assertInternalType('array', $response);
+    }
+
+    public static function paramProvider()
+    {
+        return array(
+            array('source', 'nyt',),
+            array('section', 'all',),
+            array('limit', 10,),
+            array('offset', 5,),
+            array('period', 24),
+        );
+    }
+
+    /**
+     * @return void
+     *
+     * @dataProvider paramProvider
+     */
+    public function testMagic($param, $value)
+    {
+        $methodSet = 'set' . ucfirst($param);
+        $methodGet = 'get' . ucfirst($param);
+
+        $this->assertInstanceOf('\PEAR2\Services\NYTimes\Newswire', $this->nw->$methodSet($value));
+        $this->assertEquals($value, $this->nw->$methodGet());
+    }
 }
