@@ -8,7 +8,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormat()
     {
-        $newswire = new Newswire;
+        $newswire = new Newswire('apikey');
         $newswire->setResponseFormat('yaml'); // haha, yaml, haha Symfony
     }
 }
