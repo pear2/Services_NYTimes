@@ -162,4 +162,14 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\PEAR2\Services\NYTimes\Newswire', $this->nw->$methodSet($value));
         $this->assertEquals($value, $this->nw->$methodGet());
     }
+
+    /**
+     * Throw an exception for bogus source.
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetSource()
+    {
+        $this->nw->setSource('Interweb');
+    }
 }
