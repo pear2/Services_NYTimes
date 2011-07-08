@@ -35,12 +35,18 @@ class Newswire extends Base implements NYTimesInterface
 
     public function getItemByUrl($url)
     {
-        $url = $this->cleanUrl($url);
+        try {
+            $url = $this->cleanUrl($url);
 
-        $uri = $this->getUri(array('url' => $url));
+            $uri = $this->getUri(array('url' => $url));
 
-        $response = $this->makeRequest($uri);
-        return $this->parseResponse($response);
+            $response = $this->makeRequest($uri);
+            return $this->parseResponse($response);
+        } catch (\HTTP_Request2_Exception $e) {
+            // push into a \RuntimeException, this is not very elegant
+            $e = (string) $e;
+            throw new \RuntimeException($e);
+        }
     }
 
     protected function getUri(array $params = null)
