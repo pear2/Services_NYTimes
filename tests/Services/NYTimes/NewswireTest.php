@@ -83,9 +83,9 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
     public function testGetItemByUrlInPHP()
     {
         $response = $this->nw
-            ->setResponseFormat('php')
+            ->setResponseFormat('sphp')
             ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
 
-        var_dump($response);
+        $this->assertInternalType('array', $response);
     }
 }
