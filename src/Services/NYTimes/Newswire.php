@@ -88,6 +88,8 @@ class Newswire extends Base implements NYTimesInterface
         } elseif ($this->format == 'xml') {
             $data = new \DOMDocument();
             $data->loadXML($body);
+        } elseif ($this->format == 'sphp') {
+            $data = unserialize($body);
         } else {
             throw new \Exception("Not implemented.");
         }
