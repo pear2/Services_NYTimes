@@ -19,6 +19,6 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         $req = new \HTTP_Request2;
         $req->setAdapter('mock');
 
-        $this->assertInstanceOf('PEAR2\Services\NYTimes\Newswire', $newswire->setRequestObject($req));
+        $this->assertInstanceOf('PEAR2\Services\NYTimes\Newswire', $newswire->accept($req));
     }
 }
