@@ -62,15 +62,12 @@ class Newswire extends Base implements NYTimesInterface
             if (!isset($args[0]) || (empty($args[0]) && $args[0] !== 0)) {
                 throw new \InvalidArgumentException("Cannot set an empty parameter.");
             }
-            $param = strtolower(substr($method, 3));
+            $param = $this->getParam($method);
             $this->searchParams[$param] = $args[0];
             return $this;
         }
         if (substr($method, 0, 3) == 'get') {
-            $param = strtolower(substr($method, 3));
-            if (!isset($this->searchParams[$param])) {
-                throw new \DomainException("Unknown parameter: {$param} (from {$method})");
-            }
+            $param = $this->getParam($method);
             return $this->searchParams[$param];
         }
         throw new \LogicException("Problem?");
@@ -159,6 +156,24 @@ class Newswire extends Base implements NYTimesInterface
             $sections[$section] = $displayName;
         }
         return $sections;
+    }
+
+    /**
+     * Get (and validate) the param from the method name.
+     *
+     * @param string $method The method from {@link self::__call()}
+     *
+     * @return string
+     * @see    self::__call()
+     * @throws \DomainException When someone tries to set an unknown parameter.
+     */
+    protected function getParam($method)
+    {
+        $param = strtolower(substr($method, 3));
+        if (!isset($this->searchParams[$param])) {
+            throw new \DomainException("Unknown parameter: {$param} (from {$method})");
+        }
+        return $param;
     }
 
     /**
