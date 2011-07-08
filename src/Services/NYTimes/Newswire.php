@@ -32,6 +32,10 @@ class Newswire extends Base implements NYTimesInterface
      */
     protected $apiVersion = 'v3';
 
+    /**
+     * @var string $baseUri The base URI for all requests against the Newswire API.
+     * @see self::getUri()
+     */
     protected $baseUri = 'http://api.nytimes.com/svc/news/v3/content';
 
     /**
@@ -45,18 +49,12 @@ class Newswire extends Base implements NYTimesInterface
      */
     public function getItemByUrl($url)
     {
-        try {
-            $url = $this->cleanUrl($url);
+        $url = $this->cleanUrl($url);
 
-            $uri = $this->getUri(array('url' => $url));
+        $uri = $this->getUri(array('url' => $url));
 
-            $response = $this->makeRequest($uri);
-            return $this->parseResponse($response);
-        } catch (\HTTP_Request2_Exception $e) {
-            // push into a \RuntimeException, this is not very elegant
-            $e = (string) $e;
-            throw new \RuntimeException($e);
-        }
+        $response = $this->makeRequest($uri);
+        return $this->parseResponse($response);
     }
 
     /**
@@ -126,13 +124,20 @@ class Newswire extends Base implements NYTimesInterface
      * @param string $uri
      *
      * @return \HTTP_Request2_Response
+     * @throws \RuntimeException When the transport fails.
      */
     protected function makeRequest($uri)
     {
-        if (!($this->req instanceof \HTTP_Request2)) {
-            $this->req = new \HTTP_Request2;
+        try {
+            if (!($this->req instanceof \HTTP_Request2)) {
+                $this->req = new \HTTP_Request2;
+            }
+            return $this->req->setUrl($uri)->send();
+        } catch (\HTTP_Request2_Exception $e) {
+            // push into a \RuntimeException, this is not very elegant
+            $e = (string) $e;
+            throw new \RuntimeException($e);
         }
-        return $this->req->setUrl($uri)->send();
     }
 
     /**
