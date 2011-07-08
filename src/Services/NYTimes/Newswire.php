@@ -54,7 +54,9 @@ class Newswire extends Base implements NYTimesInterface
      * @param mixed  $args
      *
      * @return mixed $this from a set*(), the value from get*().
-     * @throws \LogicException In case of another method not trapped.
+     * @throws \LogicException           In case of another method not trapped.
+     * @throws \InvalidArgumentException
+     * @throws \RangeException
      */
     public function __call($method, $args)
     {
@@ -63,15 +65,34 @@ class Newswire extends Base implements NYTimesInterface
                 throw new \InvalidArgumentException("Cannot set an empty parameter.");
             }
             $param = $this->getParam($method);
+            $value = $args[0];
+
             switch ($param) {
+            case 'limit':
+            case 'offset':
+                if (!is_int($value)) {
+                    throw new \InvalidArgumentException("{ucfirst($param)} must be an integer.");
+                }
+                if ($param == 'limit' && $value > 20) {
+                    throw new \RangeException("Limit cannot be greater than 20");
+                }
+                break;
+            case 'period':
+                if (!is_int($value)) {
+                    throw new \InvalidArgumentException("Period must be an integer between 0 and 720");
+                }
+                if ($value > 720) {
+                    throw new \RangeException("Period cannot be greater than 720");
+                }
+                break;
             case 'source':
                 static $supportedSources = array('all', 'nyt', 'iht');
-                if (!in_array($args[0], $supportedSources)) {
-                    throw new \InvalidArgumentException("Unsupported source: {$args[0]}");
+                if (!in_array($value, $supportedSources)) {
+                    throw new \InvalidArgumentException("Unsupported source: {$value}");
                 }
                 break;
             }
-            $this->searchParams[$param] = $args[0];
+            $this->searchParams[$param] = $value;
             return $this;
         }
         if (substr($method, 0, 3) == 'get') {
