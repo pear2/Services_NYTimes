@@ -22,6 +22,7 @@
  * @copyright 2011 Till Klampaeckel
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link      https://github.com/pear2/Services_NYTimes
+ * @link      http://developer.nytimes.com/docs/times_newswire_api/
  * @link      http://developer.nytimes.com/attribution
  */
 namespace PEAR2\Services\NYTimes;
@@ -37,6 +38,40 @@ class Newswire extends Base implements NYTimesInterface
      * @see self::getUri()
      */
     protected $baseUri = 'http://api.nytimes.com/svc/news/v3/content';
+
+    protected $searchParams = array(
+        'source'  => 'all',
+        'section' => 'all',
+        'limit'   => 20,
+        'offset'  => 0,
+        'period'  => 0,
+    );
+
+    /**
+     * This wraps around {@link self::$searchParams}
+     *
+     * @param string $method Must start with 'set' or 'get'
+     * @param mixed  $args
+     *
+     * @return mixed $this from a set*(), the value from get*().
+     * @throws \LogicException In case of another method not trapped.
+     */
+    public function __call($method, $args)
+    {
+        if (substr($method, 0, 3) == 'set') {
+            if (!isset($args[0]) || (empty($args[0]) && $args[0] !== 0)) {
+                throw new \InvalidArgumentException("Cannot set an empty parameter.");
+            }
+            $param = strtolower(substr($method, 4));
+            $this->searchParams[$param] = $args[0];
+            return $this;
+        }
+        if (substr($method, 0, 3) == 'get') {
+            $param = strtolower(substr($method, 4));
+            return $this->searchParams[$param];
+        }
+        throw new \LogicException("Problem?");
+    }
 
     /**
      * Return meta data about an article by URL.
@@ -55,6 +90,16 @@ class Newswire extends Base implements NYTimesInterface
 
         $response = $this->makeRequest($uri);
         return $this->parseResponse($response);
+    }
+
+    /**
+     * Get items.
+     *
+     * @return array
+     */
+    public function getItems()
+    {
+
     }
 
     /**
