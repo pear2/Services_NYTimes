@@ -87,5 +87,7 @@ class NewswireTest extends \PHPUnit_Framework_TestCase
             ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
 
         $this->assertInternalType('array', $response);
+        $this->assertArrayHasKey('status', $response);
+        $this->assertArrayHasKey('results', $response);
     }
 }
