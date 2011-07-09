@@ -177,6 +177,11 @@ class NewswireTest extends TestCase
         $this->assertInternalType('array', $response);
     }
 
+    /**
+     * Supply parameters to {@link self::testMagic()}.
+     *
+     * @return array
+     */
     public static function paramProvider()
     {
         return array(
@@ -190,6 +195,11 @@ class NewswireTest extends TestCase
     }
 
     /**
+     * Make sure set*() and get*() work.
+     *
+     * @param string $param
+     * @param mixed  $value
+     *
      * @return void
      *
      * @dataProvider paramProvider
