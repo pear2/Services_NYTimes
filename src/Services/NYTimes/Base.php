@@ -138,7 +138,28 @@ abstract class Base
         }
     }
 
+    /**
+     * Make a request! Woo!!!
+     *
+     * @param string $uri
+     *
+     * @return \HTTP_Request2_Response
+     * @throws \RuntimeException When the transport fails.
+     */
+    protected function makeRequest($uri)
+    {
+        try {
+            if (!($this->req instanceof \HTTP_Request2)) {
+                $this->req = new \HTTP_Request2;
+            }
+            return $this->req->setUrl($uri)->send();
+        } catch (\HTTP_Request2_Exception $e) {
+            // push into a \RuntimeException, this is not very elegant
+            $e = (string) $e;
+            throw new \RuntimeException($e);
+        }
+    }
+
     abstract protected function getUri();
-    abstract protected function makeRequest($uri);
     abstract protected function parseResponse(\HTTP_Request2_Response $response);
 }

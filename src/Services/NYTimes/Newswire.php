@@ -233,28 +233,6 @@ class Newswire extends Base implements NYTimesInterface
     }
 
     /**
-     * Make a request! Woo!!!
-     *
-     * @param string $uri
-     *
-     * @return \HTTP_Request2_Response
-     * @throws \RuntimeException When the transport fails.
-     */
-    protected function makeRequest($uri)
-    {
-        try {
-            if (!($this->req instanceof \HTTP_Request2)) {
-                $this->req = new \HTTP_Request2;
-            }
-            return $this->req->setUrl($uri)->send();
-        } catch (\HTTP_Request2_Exception $e) {
-            // push into a \RuntimeException, this is not very elegant
-            $e = (string) $e;
-            throw new \RuntimeException($e);
-        }
-    }
-
-    /**
      * @param \HTTP_Request2_Response $response
      *
      * @return mixed
