@@ -103,6 +103,22 @@ abstract class Base
     }
 
     /**
+     * Strip query from url.
+     *
+     * @param string $url
+     *
+     * @return string
+     */
+    protected function cleanUrl($url)
+    {
+        $parts = parse_url($url);
+
+        return $parts['scheme']
+            . '://' . $parts['host']
+            . $parts['path'];
+    }
+
+    /**
      * Determine if the response is valid.
      *
      * @param \HTTP_Request2_Response $response

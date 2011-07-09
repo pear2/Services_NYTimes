@@ -257,20 +257,4 @@ class Newswire extends Base implements NYTimesInterface
         }
         return $data;
     }
-
-    /**
-     * Strip query from url.
-     *
-     * @param string $url
-     *
-     * @return string
-     */
-    protected function cleanUrl($url)
-    {
-        $parts = parse_url($url);
-
-        return $parts['scheme']
-            . '://' . $parts['host']
-            . $parts['path'];
-    }
 }
