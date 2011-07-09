@@ -26,4 +26,26 @@
 namespace PEAR2\Services\NYTimes;
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Helper function to setup the object to be injected into the mock.
+     *
+     * @param string $apiName    The name of the API.
+     * @param string $apiVersion The version of the API.
+     * @param string $fixture    The name of the fixture file.
+     *
+     * @return \HTTP_Request2_Response
+     */
+    protected function setUpResponseObject($apiName, $apiVersion, $fixture)
+    {
+        $data = include __DIR__ . "/../../fixtures/{$apiName}/{$apiVersion}/{$fixture}";
+
+        $response = new \HTTP_Request2_Response(
+            $data['statusLine'],
+            true,
+            $data['effectiveUrl']
+        );
+
+        $response->appendBody($data['body']);
+        return $response;
+    }
 }

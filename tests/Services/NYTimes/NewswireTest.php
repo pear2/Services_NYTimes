@@ -65,23 +65,49 @@ class NewswireTest extends TestCase
     public static function urlProvider()
     {
         return array(
-            array('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html'),
-            array('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html?hp'),
+            array(
+                'http://www.nytimes.com/2011/07/09/science/space/09shuttle.html',
+                'shuttle-article.php',
+                'v3',
+            ),
+            array(
+                'http://www.nytimes.com/2011/07/09/science/space/09shuttle.html?hp',
+                'shuttle-article.php',
+                'v3',
+            ),
         );
     }
 
     /**
      * Regular test item by url (json is used).
      *
+     * @param string $url        The URL of the article.
+     * @param string $fixture    The fixture file.
+     * @param string $apiVersion The Newswire API version, e.g. v3.
+     *
      * @return void
      *
      * @dataProvider urlProvider
      */
-    public function testGetItemByUrl($url)
+    public function testGetItemByUrl($url, $fixture, $apiVersion)
     {
-        $response = $this->nw->getItemByUrl($url);
+        $responseObject = $this->setUpResponseObject('newswire', $apiVersion, $fixture);
 
+        $nwMock = $this->getMock(
+            'PEAR2\Services\NYTimes\Newswire',
+            array('makeRequest',),
+            array('fooBar',) // api key
+        );
+        $nwMock->expects($this->once())
+            ->method('makeRequest')
+            ->will($this->returnValue($responseObject));
+
+        $response = $nwMock->getItemByUrl($url);
         $this->assertInstanceOf('stdClass', $response);
+        $this->assertObjectHasAttribute('status', $response);
+        $this->assertObjectHasAttribute('copyright', $response);
+        $this->assertObjectHasAttribute('num_results', $response);
+        $this->assertObjectHasAttribute('results', $response);
     }
 
     /**
