@@ -163,7 +163,15 @@ class NewswireTest extends TestCase
      */
     public function testGetSections()
     {
-        $sections = $this->nw->getSections();
+        $responseObject = $this->setUpResponseObject(
+            'newswire',
+            'v3',
+            'get-sections.php'
+        );
+
+        $nwMock = $this->getApiMocked('newswire', $responseObject);
+
+        $sections = $nwMock->getSections();
         $this->assertInternalType('array', $sections);
     }
 
