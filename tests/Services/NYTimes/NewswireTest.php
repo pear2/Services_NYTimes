@@ -139,7 +139,15 @@ class NewswireTest extends TestCase
      */
     public function testGetItemByUrlInPHP()
     {
-        $response = $this->nw
+        $responseObject = $this->setUpResponseObject(
+            'newswire',
+            'v3',
+            'shuttle-article-sphp.php'
+        );
+
+        $nwMock = $this->getApiMocked('newswire', $responseObject);
+
+        $response = $nwMock
             ->setResponseFormat('sphp')
             ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
 
