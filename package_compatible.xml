@@ -17,7 +17,7 @@ Currently supported:
   <active>yes</active>
  </lead>
  <date>2011-07-09</date>
- <time>04:38:24</time>
+ <time>21:50:27</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -29,19 +29,30 @@ Currently supported:
  <license uri="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
  <notes>Initial 0.1.0 release/POC.
 
+  * Newswire API: fully is supported
+  * Article Search API: currently only 'query:url' is supported
+  * Testsuite
+    * all features are covered by tests
+    * 'live' tests are all mocked
+
 
 Work in progress.
 </notes>
  <contents>
   <dir name="/">
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/TestInit.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/TestCase.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/NewswireTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/MainTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/phpunit.xml"/>
-   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php-dist"/>
-   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article-xml.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article-sphp.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/get-sections.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/get-items.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/articlesearch/v1/fixtures/articlesearch/v1/by-url.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/NYTimesInterface.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/Newswire.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/Main.php"/>
@@ -66,13 +77,18 @@ Work in progress.
    <install name="php/PEAR2/Services/NYTimes/Main.php" as="PEAR2/Services/NYTimes/Main.php"/>
    <install name="php/PEAR2/Services/NYTimes/Newswire.php" as="PEAR2/Services/NYTimes/Newswire.php"/>
    <install name="php/PEAR2/Services/NYTimes/NYTimesInterface.php" as="PEAR2/Services/NYTimes/NYTimesInterface.php"/>
-   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php" as="PEAR2_Services_NYTimes/config.php"/>
-   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php-dist" as="PEAR2_Services_NYTimes/config.php-dist"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/articlesearch/v1/fixtures/articlesearch/v1/by-url.php" as="PEAR2_Services_NYTimes/fixtures/articlesearch/v1/fixtures/articlesearch/v1/by-url.php"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/get-items.php" as="PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/get-items.php"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/get-sections.php" as="PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/get-sections.php"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article-sphp.php" as="PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article-sphp.php"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article-xml.php" as="PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article-xml.php"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article.php" as="PEAR2_Services_NYTimes/fixtures/newswire/v3/fixtures/newswire/v3/shuttle-article.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/phpunit.xml" as="PEAR2_Services_NYTimes/phpunit.xml"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/MainTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/MainTest.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/NewswireTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/NewswireTest.php"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/TestCase.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/TestCase.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/TestInit.php" as="PEAR2_Services_NYTimes/TestInit.php"/>
   </filelist>
  </phprelease>

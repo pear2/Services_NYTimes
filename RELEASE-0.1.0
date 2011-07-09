@@ -1,1 +1,7 @@
 Initial 0.1.0 release/POC.
+
+  * Newswire API: fully is supported
+  * Article Search API: currently only 'query:url' is supported
+  * Testsuite
+    * all features are covered by tests
+    * 'live' tests are all mocked
