@@ -26,4 +26,15 @@
 namespace PEAR2\Services\NYTimes;
 class ArticlesearchTest extends \PHPUnit_Framework_TestCase
 {
+    protected function setUp()
+    {
+        if (!defined('ARTICLESEARCH_API_KEY')) {
+            $this->markTestSkipped("This requires an API key.");
+        }
+    }
+
+    public function testUrlSearch()
+    {
+        $search = new Articlesearch(ARTICLESEARCH_API_KEY);
+    }
 }
