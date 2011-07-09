@@ -181,7 +181,15 @@ class NewswireTest extends TestCase
      */
     public function testGetItems()
     {
-        $response = $this->nw->getItems();
+        $responseObject = $this->setUpResponseObject(
+            'newswire',
+            'v3',
+            'get-items.php'
+        );
+
+        $nwMock = $this->getApiMocked('newswire', $responseObject);
+
+        $response = $nwMock->getItems();
         $this->assertInternalType('array', $response);
     }
 
