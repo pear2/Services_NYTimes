@@ -115,7 +115,15 @@ class NewswireTest extends TestCase
      */
     public function testGetItemByUrlInExEmHell()
     {
-        $response = $this->nw
+        $responseObject = $this->setUpResponseObject(
+            'newswire',
+            'v3',
+            'shuttle-article-xml.php'
+        );
+
+        $nwMock = $this->getApiMocked('newswire', $responseObject);
+
+        $response = $nwMock
             ->setResponseFormat('xml')
             ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
 
