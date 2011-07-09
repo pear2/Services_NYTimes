@@ -24,7 +24,7 @@
  * @link      https://github.com/pear2/Services_NYTimes
  */
 namespace PEAR2\Services\NYTimes;
-class ArticlesearchTest extends \PHPUnit_Framework_TestCase
+class ArticlesearchTest extends TestCase
 {
     protected function setUp()
     {

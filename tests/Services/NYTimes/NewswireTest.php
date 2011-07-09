@@ -26,7 +26,7 @@
  * @link      https://github.com/pear2/Services_NYTimes
  */
 namespace PEAR2\Services\NYTimes;
-class NewswireTest extends \PHPUnit_Framework_TestCase
+class NewswireTest extends TestCase
 {
     /**
      * @var \PEAR2\Services\NYTimes\Newswire

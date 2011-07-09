@@ -24,7 +24,7 @@
  * @link      https://github.com/pear2/Services_NYTimes
  */
 namespace PEAR2\Services\NYTimes;
-class MainTest extends \PHPUnit_Framework_TestCase
+class MainTest extends TestCase
 {
     /**
      * @return array

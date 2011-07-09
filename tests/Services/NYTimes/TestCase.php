@@ -1,6 +1,6 @@
 <?php
 /**
- * PEAR2\Services\NYTimes\BaseTest
+ * PEAR2\Services\NYTimes\TestCase
  *
  * PHP version 5
  *
@@ -14,7 +14,7 @@
  */
 
 /**
- * BaseTest covers {@link \PEAR2\Services\NYTimes\Base}.
+ * An abstract TestCase class for test cases.
  *
  * @category  Services
  * @package   PEAR2_Services_NYTimes
@@ -24,24 +24,6 @@
  * @link      https://github.com/pear2/Services_NYTimes
  */
 namespace PEAR2\Services\NYTimes;
-class BaseTest extends TestCase
+abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testFormat()
-    {
-        $newswire = new Newswire('apikey');
-        $newswire->setResponseFormat('yaml'); // haha, yaml, haha Symfony
-    }
-
-    public function testSetRequest()
-    {
-        $newswire = new Newswire('apikey');
-
-        $req = new \HTTP_Request2;
-        $req->setAdapter('mock');
-
-        $this->assertInstanceOf('PEAR2\Services\NYTimes\Newswire', $newswire->accept($req));
-    }
 }
