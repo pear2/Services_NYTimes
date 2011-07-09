@@ -41,6 +41,6 @@ class ArticlesearchTest extends \PHPUnit_Framework_TestCase
         $search = new Articlesearch(ARTICLESEARCH_API_KEY);
         $data   = $search->byUrl('http://www.nytimes.com/2011/07/09/business/economy/job-growth-falters-badly-clouding-hope-for-recovery.html?hp');
 
-        $this->assertInternalType('array', $data);
+        $this->assertInstanceOf('stdClass', $data);
     }
 }
