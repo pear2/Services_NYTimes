@@ -91,18 +91,16 @@ class NewswireTest extends TestCase
      */
     public function testGetItemByUrl($url, $fixture, $apiVersion)
     {
-        $responseObject = $this->setUpResponseObject('newswire', $apiVersion, $fixture);
-
-        $nwMock = $this->getMock(
-            'PEAR2\Services\NYTimes\Newswire',
-            array('makeRequest',),
-            array('fooBar',) // api key
+        $responseObject = $this->setUpResponseObject(
+            'newswire',
+            $apiVersion,
+            $fixture
         );
-        $nwMock->expects($this->once())
-            ->method('makeRequest')
-            ->will($this->returnValue($responseObject));
+
+        $nwMock = $this->getApiMocked('newswire', $responseObject);
 
         $response = $nwMock->getItemByUrl($url);
+
         $this->assertInstanceOf('stdClass', $response);
         $this->assertObjectHasAttribute('status', $response);
         $this->assertObjectHasAttribute('copyright', $response);

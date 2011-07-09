@@ -48,4 +48,30 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $response->appendBody($data['body']);
         return $response;
     }
+
+    /**
+     * Create a mock object.
+     *
+     * @param string                  $apiName        The name of the API, e.g.
+                                                      'newswire'.
+     * @param \HTTP_Request2_Response $responseObject A response object to inject.
+     *
+     * @return mixed
+     * @see    self::setUpResponseObject()
+     */
+    protected function getApiMocked($apiName, \HTTP_Request2_Response $responseObject)
+    {
+        $className = ucfirst(strtolower($apiName));
+
+        $mockedClass = $this->getMock(
+            "PEAR2\Services\NYTimes\\" . $className,
+            array('makeRequest',),
+            array('fooBar',) // fake api key
+        );
+        $mockedClass->expects($this->once())
+            ->method('makeRequest')
+            ->will($this->returnValue($responseObject));
+
+        return $mockedClass;
+    }
 }
