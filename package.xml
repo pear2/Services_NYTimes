@@ -23,7 +23,7 @@ Currently supported:
   <active>yes</active>
  </lead>
  <date>2011-07-09</date>
- <time>04:37:13</time>
+ <time>04:38:24</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -61,6 +61,7 @@ Work in progress.
      </dir>
     </dir>
     <file role="test" name="config.php"/>
+    <file role="test" name="config.php-dist"/>
     <file role="test" name="phpunit.xml"/>
     <file role="test" name="TestInit.php"/>
    </dir>

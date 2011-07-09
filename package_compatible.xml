@@ -17,7 +17,7 @@ Currently supported:
   <active>yes</active>
  </lead>
  <date>2011-07-09</date>
- <time>04:37:13</time>
+ <time>04:38:24</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -40,6 +40,7 @@ Work in progress.
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/phpunit.xml"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php-dist"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/NYTimesInterface.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/Newswire.php"/>
@@ -66,6 +67,7 @@ Work in progress.
    <install name="php/PEAR2/Services/NYTimes/Newswire.php" as="PEAR2/Services/NYTimes/Newswire.php"/>
    <install name="php/PEAR2/Services/NYTimes/NYTimesInterface.php" as="PEAR2/Services/NYTimes/NYTimesInterface.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php" as="PEAR2_Services_NYTimes/config.php"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php-dist" as="PEAR2_Services_NYTimes/config.php-dist"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/phpunit.xml" as="PEAR2_Services_NYTimes/phpunit.xml"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php"/>
