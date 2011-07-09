@@ -37,7 +37,7 @@ class Main
      */
     public static function factory($api, $key)
     {
-        static $supported = array('Newswire');
+        static $supported = array('Newswire', 'Articlesearch',);
         $api = ucfirst(strtolower($api));
 
         if (!in_array($api, $supported)) {
