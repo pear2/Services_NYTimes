@@ -26,13 +26,6 @@
 namespace PEAR2\Services\NYTimes;
 class ArticlesearchTest extends TestCase
 {
-    protected function setUp()
-    {
-        if (!defined('ARTICLESEARCH_API_KEY')) {
-            $this->markTestSkipped("This requires an API key.");
-        }
-    }
-
     /**
      * @return void
      */
