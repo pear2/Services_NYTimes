@@ -26,10 +26,28 @@
 namespace PEAR2\Services\NYTimes;
 class MainTest extends \PHPUnit_Framework_TestCase
 {
-    public function testFactory()
+    /**
+     * @return array
+     */
+    public static function factoryProvider()
     {
-        $newswire = Main::factory('newswire', 'foo');
-        $this->assertInstanceOf('PEAR2\Services\NYTimes\Newswire', $newswire);
+        return array(
+            array('newswire', 'PEAR2\Services\NYTimes\Newswire',),
+            array('articlesearch', 'PEAR2\Services\NYTimes\Articlesearch',),
+        );
+    }
+
+    /**
+     * Test the factory.
+     *
+     * @return void
+     *
+     * @dataProvider factoryProvider
+     */
+    public function testFactory($api, $className)
+    {
+        $object = Main::factory($api, 'foo');
+        $this->assertInstanceOf($className, $object);
     }
 
     /**

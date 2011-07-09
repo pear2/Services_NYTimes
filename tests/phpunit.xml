@@ -6,4 +6,7 @@
     <testsuite name="NewsWire">
         <file>./Services/NYTimes/NewswireTest.php</file>
     </testsuite>
+    <testsuite name="Article Search">
+        <file>./Services/NYTimes/ArticlesearchTest.php</file>
+    </testsuite>
 </phpunit>
