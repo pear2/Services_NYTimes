@@ -40,10 +40,7 @@ class NewswireTest extends TestCase
      */
     protected function setUp()
     {
-        if (!defined('NEWSWIRE_API_KEY')) {
-            $this->markTestSkipped("This requires an API key.");
-        }
-        $this->nw = new Newswire(NEWSWIRE_API_KEY);
+        $this->nw = new Newswire('foo');
     }
 
     /**
