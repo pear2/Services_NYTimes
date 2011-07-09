@@ -39,18 +39,50 @@ class Articlesearch extends Base implements NYTimesInterface
      */
     protected $baseUri = 'http://api.nytimes.com/svc/search/v1/article';
 
-    protected function getUri()
+    /**
+     * Search by URL.
+     *
+     * @param string $url A URL to an article.
+     *
+     * @return stdClass
+     */
+    public function byUrl($url)
     {
-        return $this->baseUri;
+        $uri = $this->getUri(array(
+            'query' => 'url:' . $this->cleanUrl($url))
+        );
+
+        $response = $this->makeRequest($uri);
+
+        $data = $this->parseResponse($response);
+
+        return $data->results[0];
     }
 
-    protected function makeRequest($uri)
+    /**
+     * Build the endpoint.
+     *
+     * @param array $params
+     *
+     * @return string
+     */
+    protected function getUri(array $params = null)
     {
+        $endpoint = $this->baseUri;
+        if ($params === null) {
+            $params = array();
+        }
+        $params['api-key'] = $this->key;
 
+        $endpoint .= '?' . http_build_query($params);
+        return $endpoint;
     }
 
     protected function parseResponse(\HTTP_Request2_Response $response)
     {
-
+        if (!$this->isSuccessful($response)) {
+            $this->hazProblem($response);
+        }
+        return json_decode($response->getBody());
     }
 }
