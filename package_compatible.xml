@@ -7,7 +7,8 @@
  <description>
 Currently supported:
 
- * Newswire (work in progress): http://developer.nytimes.com/docs/read/times_newswire_api
+ * Newswire: http://developer.nytimes.com/docs/read/times_newswire_api
+ * Article Search (query:url only): http://developer.nytimes.com/docs/read/article_search_api
 </description>
  <lead>
   <name>Till Klampaeckel</name>
@@ -15,8 +16,8 @@ Currently supported:
   <email>till@php.net</email>
   <active>yes</active>
  </lead>
- <date>2011-07-08</date>
- <time>22:50:59</time>
+ <date>2011-07-09</date>
+ <time>04:37:13</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -37,12 +38,14 @@ Work in progress.
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/NewswireTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/MainTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php"/>
+   <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/phpunit.xml"/>
    <file role="test" name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/NYTimesInterface.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/Newswire.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/Main.php"/>
    <file role="php" name="php/PEAR2/Services/NYTimes/Base.php"/>
+   <file role="php" name="php/PEAR2/Services/NYTimes/Articlesearch.php"/>
   </dir>
  </contents>
  <dependencies>
@@ -57,12 +60,14 @@ Work in progress.
  </dependencies>
  <phprelease>
   <filelist>
+   <install name="php/PEAR2/Services/NYTimes/Articlesearch.php" as="PEAR2/Services/NYTimes/Articlesearch.php"/>
    <install name="php/PEAR2/Services/NYTimes/Base.php" as="PEAR2/Services/NYTimes/Base.php"/>
    <install name="php/PEAR2/Services/NYTimes/Main.php" as="PEAR2/Services/NYTimes/Main.php"/>
    <install name="php/PEAR2/Services/NYTimes/Newswire.php" as="PEAR2/Services/NYTimes/Newswire.php"/>
    <install name="php/PEAR2/Services/NYTimes/NYTimesInterface.php" as="PEAR2/Services/NYTimes/NYTimesInterface.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/config.php" as="PEAR2_Services_NYTimes/config.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/phpunit.xml" as="PEAR2_Services_NYTimes/phpunit.xml"/>
+   <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/ArticlesearchTest.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/BaseTest.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/MainTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/MainTest.php"/>
    <install name="test/pear2.php.net/PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/NewswireTest.php" as="PEAR2_Services_NYTimes/Services/NYTimes/Services/NYTimes/NewswireTest.php"/>

@@ -7,7 +7,8 @@
  <description>
 Currently supported:
 
- * Newswire (work in progress): http://developer.nytimes.com/docs/read/times_newswire_api
+ * Newswire: http://developer.nytimes.com/docs/read/times_newswire_api
+ * Article Search (query:url only): http://developer.nytimes.com/docs/read/article_search_api
 </description>
  <lead>
   <name>Your Name</name>
@@ -21,8 +22,8 @@ Currently supported:
   <email>till@php.net</email>
   <active>yes</active>
  </lead>
- <date>2011-07-08</date>
- <time>22:50:59</time>
+ <date>2011-07-09</date>
+ <time>04:37:13</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -42,6 +43,7 @@ Work in progress.
    <dir name="src" baseinstalldir="PEAR2">
     <dir name="Services">
      <dir name="NYTimes">
+      <file role="php" name="Articlesearch.php"/>
       <file role="php" name="Base.php"/>
       <file role="php" name="Main.php"/>
       <file role="php" name="Newswire.php"/>
@@ -52,6 +54,7 @@ Work in progress.
    <dir name="tests" baseinstalldir="/">
     <dir name="Services">
      <dir name="NYTimes">
+      <file role="test" name="ArticlesearchTest.php"/>
       <file role="test" name="BaseTest.php"/>
       <file role="test" name="MainTest.php"/>
       <file role="test" name="NewswireTest.php"/>
