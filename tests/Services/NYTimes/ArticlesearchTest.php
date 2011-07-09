@@ -38,8 +38,14 @@ class ArticlesearchTest extends TestCase
      */
     public function testUrlSearch()
     {
-        $search = new Articlesearch(ARTICLESEARCH_API_KEY);
-        $data   = $search->byUrl('http://www.nytimes.com/2011/07/09/business/economy/job-growth-falters-badly-clouding-hope-for-recovery.html?hp');
+        $responseObject = $this->setUpResponseObject(
+            'articlesearch',
+            'v1',
+            'by-url.php'
+        );
+
+        $asMock = $this->getApiMocked('articlesearch', $responseObject);
+        $data   = $asMock->byUrl('http://www.nytimes.com/2011/07/09/business/economy/job-growth-falters-badly-clouding-hope-for-recovery.html?hp');
 
         $this->assertInstanceOf('stdClass', $data);
     }
