@@ -4,10 +4,6 @@
  */
 require_once 'PHPUnit/Autoload.php';
 
-if (file_exists(__DIR__ . '/config.php')) {
-    include __DIR__ . '/config.php';
-}
-
 require_once __DIR__ . '/Services/NYTimes/TestCase.php';
 
 /**

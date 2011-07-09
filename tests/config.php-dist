@@ -1,3 +1,0 @@
-<?php
-define('NEWSWIRE_API_KEY', '');
-define('ARTICLESEARCH_API_KEY', '');
