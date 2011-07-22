@@ -119,6 +119,16 @@ abstract class Base
     }
 
     /**
+     * Return the HTTP_Request2 object, or null.
+     *
+     * @return mixed HTTP_Request2|null
+     */
+    public function getRequestObject()
+    {
+        return $this->req;
+    }
+
+    /**
      * Determine if the response is valid.
      *
      * @param \HTTP_Request2_Response $response
