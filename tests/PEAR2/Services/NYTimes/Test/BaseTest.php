@@ -15,6 +15,8 @@
 
 namespace PEAR2\Services\NYTimes\Test;
 
+use PEAR2\Services\NYTimes\Newswire;
+
 /**
  * BaseTest covers {@link \PEAR2\Services\NYTimes\Base}.
  *
