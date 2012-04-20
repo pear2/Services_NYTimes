@@ -1,0 +1,15 @@
+{
+    "name": "pear2/Services_NYTimes",
+    "description": "An API wrapper for the NYTimes API",
+    "type": "library",
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear.php.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "pear-pear/HTTP_Request2": ">1.0.0"
+    }
+}
