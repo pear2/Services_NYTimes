@@ -4,7 +4,7 @@
  */
 require_once 'PHPUnit/Autoload.php';
 
-require_once __DIR__ . '/Services/NYTimes/TestCase.php';
+require_once __DIR__ . '/PEAR2/Services/NYTimes/Test/TestCase.php';
 
 /**
  * testAutoloader
@@ -16,8 +16,7 @@ require_once __DIR__ . '/Services/NYTimes/TestCase.php';
 function testAutoloader($className) {
     if (substr($className, 0, 22) == 'PEAR2\Services\NYTimes') {
 
-        $file  = substr($className, 6);
-        $file  = str_replace("\\", '/', $file);
+        $file  = str_replace("\\", '/', $className);
         $file .= '.php';
 
         $path = realpath(__DIR__ . '/../src');

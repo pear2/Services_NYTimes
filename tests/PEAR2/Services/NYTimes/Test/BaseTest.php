@@ -13,6 +13,8 @@
  * @link      https://github.com/pear2/Services_NYTimes
  */
 
+namespace PEAR2\Services\NYTimes\Test;
+
 /**
  * BaseTest covers {@link \PEAR2\Services\NYTimes\Base}.
  *
@@ -23,7 +25,6 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link      https://github.com/pear2/Services_NYTimes
  */
-namespace PEAR2\Services\NYTimes;
 class BaseTest extends TestCase
 {
     /**

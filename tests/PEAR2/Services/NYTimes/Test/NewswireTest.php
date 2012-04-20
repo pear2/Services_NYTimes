@@ -13,6 +13,8 @@
  * @link      https://github.com/pear2/Services_NYTimes
  */
 
+namespace PEAR2\Services\NYTimes\Test;
+
 /**
  * NewswireTest covers {@link \PEAR2\Services\NYTimes\Newswire}.
  *
@@ -25,7 +27,6 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link      https://github.com/pear2/Services_NYTimes
  */
-namespace PEAR2\Services\NYTimes;
 class NewswireTest extends TestCase
 {
     /**

@@ -13,6 +13,8 @@
  * @link      https://github.com/pear2/Services_NYTimes
  */
 
+namespace PEAR2\Services\NYTimes\Test;
+
 /**
  * ArticlesearchTest covers {@link \PEAR2\Services\NYTimes\Articlesearch}.
  *
@@ -23,7 +25,6 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link      https://github.com/pear2/Services_NYTimes
  */
-namespace PEAR2\Services\NYTimes;
 class ArticlesearchTest extends TestCase
 {
     /**
