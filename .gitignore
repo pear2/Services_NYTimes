@@ -1,2 +1,5 @@
 tests/config.php
 *.tgz
+*.tar
+*.zip
+.idea
