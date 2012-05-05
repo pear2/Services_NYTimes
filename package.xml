@@ -91,10 +91,10 @@ Work in progress.
  <dependencies>
   <required>
    <php>
-    <min>5.2.0</min>
+    <min>5.3.0</min>
    </php>
    <pearinstaller>
-    <min>2.0.0a1</min>
+    <min>1.9.4</min>
    </pearinstaller>
    <package>
     <name>HTTP_Request2</name>
