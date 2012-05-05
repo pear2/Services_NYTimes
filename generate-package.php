@@ -8,9 +8,9 @@ PEAR::setErrorHandling(PEAR_ERROR_DIE);
 $api_version     = '0.2.0';
 $api_state       = 'alpha';
 
-$release_version = '0.2.1';
+$release_version = '0.2.2';
 $release_state   = 'alpha';
-$release_notes   = "Bugfix (installation)";
+$release_notes   = "Bugfix (description :))";
 
 $description = "An API wrapper for the NYTimes APIs.";
 
