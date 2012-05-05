@@ -1,92 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package version="2.1" xmlns="http://pear.php.net/dtd/package-2.1" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.1     http://pear.php.net/dtd/package-2.1.xsd">
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
  <name>PEAR2_Services_NYTimes</name>
- <channel>pear2.php.net</channel>
- <summary>A wrapper for APIs of the NYTimes.
-</summary>
- <description>
-Currently supported:
-
- * Newswire: http://developer.nytimes.com/docs/read/times_newswire_api
- * Article Search (query:url only): http://developer.nytimes.com/docs/read/article_search_api
-</description>
- <lead>
-  <name>Your Name</name>
-  <user>handle</user>
-  <email>handle@php.net</email>
-  <active>yes</active>
- </lead>
+ <channel>easybib.github.com/pear</channel>
+ <summary>An API wrapper to retrieve meta data of articles on huffingtonpost.com.</summary>
+ <description>An API wrapper to retrieve meta data of articles on huffingtonpost.com.</description>
  <lead>
   <name>Till Klampaeckel</name>
   <user>till</user>
   <email>till@php.net</email>
   <active>yes</active>
  </lead>
- <date>2011-07-09</date>
- <time>21:50:27</time>
+ <date>2012-05-05</date>
+ <time>19:22:33</time>
  <version>
-  <release>0.1.0</release>
-  <api>0.1.0</api>
+  <release>0.2.0</release>
+  <api>0.2.0</api>
  </version>
  <stability>
   <release>alpha</release>
   <api>alpha</api>
  </stability>
- <license uri="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
- <notes>Initial 0.1.0 release/POC.
-
-  * Newswire API: fully is supported
-  * Article Search API: currently only 'query:url' is supported
-  * Testsuite
-    * all features are covered by tests
-    * 'live' tests are all mocked
-
-
-Work in progress.
-</notes>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+ <notes>
+Making a pear compatible package.
+ </notes>
  <contents>
-  <dir name="/">
-   <dir name="src" baseinstalldir="PEAR2">
-    <dir name="Services">
-     <dir name="NYTimes">
-      <file role="php" name="Articlesearch.php"/>
-      <file role="php" name="Base.php"/>
-      <file role="php" name="Main.php"/>
-      <file role="php" name="Newswire.php"/>
-      <file role="php" name="NYTimesInterface.php"/>
-     </dir>
-    </dir>
-   </dir>
-   <dir name="tests" baseinstalldir="/">
+  <dir baseinstalldir="/" name="/">
+   <dir name="src">
+    <dir name="PEAR2">
+     <dir name="Services">
+      <dir name="NYTimes">
+       <file name="Articlesearch.php" role="php" />
+       <file name="Base.php" role="php" />
+       <file name="Main.php" role="php" />
+       <file name="Newswire.php" role="php" />
+       <file name="NYTimesInterface.php" role="php" />
+      </dir> <!-- /src/PEAR2/Services/NYTimes -->
+     </dir> <!-- /src/PEAR2/Services -->
+    </dir> <!-- /src/PEAR2 -->
+   </dir> <!-- /src -->
+   <dir name="tests">
     <dir name="fixtures">
      <dir name="articlesearch">
       <dir name="v1">
-       <file role="test" name="by-url.php"/>
-      </dir>
-     </dir>
+       <file name="by-url.php" role="test" />
+      </dir> <!-- /tests/fixtures/articlesearch/v1 -->
+     </dir> <!-- /tests/fixtures/articlesearch -->
      <dir name="newswire">
       <dir name="v3">
-       <file role="test" name="get-items.php"/>
-       <file role="test" name="get-sections.php"/>
-       <file role="test" name="shuttle-article-sphp.php"/>
-       <file role="test" name="shuttle-article-xml.php"/>
-       <file role="test" name="shuttle-article.php"/>
-      </dir>
-     </dir>
-    </dir>
-    <dir name="Services">
-     <dir name="NYTimes">
-      <file role="test" name="ArticlesearchTest.php"/>
-      <file role="test" name="BaseTest.php"/>
-      <file role="test" name="MainTest.php"/>
-      <file role="test" name="NewswireTest.php"/>
-      <file role="test" name="TestCase.php"/>
-     </dir>
-    </dir>
-    <file role="test" name="phpunit.xml"/>
-    <file role="test" name="TestInit.php"/>
-   </dir>
-  </dir>
+       <file name="get-items.php" role="test" />
+       <file name="get-sections.php" role="test" />
+       <file name="shuttle-article-sphp.php" role="test" />
+       <file name="shuttle-article-xml.php" role="test" />
+       <file name="shuttle-article.php" role="test" />
+      </dir> <!-- /tests/fixtures/newswire/v3 -->
+     </dir> <!-- /tests/fixtures/newswire -->
+    </dir> <!-- /tests/fixtures -->
+    <dir name="PEAR2">
+     <dir name="Services">
+      <dir name="NYTimes">
+       <dir name="Test">
+        <file name="ArticlesearchTest.php" role="test" />
+        <file name="BaseTest.php" role="test" />
+        <file name="MainTest.php" role="test" />
+        <file name="NewswireTest.php" role="test" />
+        <file name="TestCase.php" role="test" />
+       </dir> <!-- /tests/PEAR2/Services/NYTimes/Test -->
+      </dir> <!-- /tests/PEAR2/Services/NYTimes -->
+     </dir> <!-- /tests/PEAR2/Services -->
+    </dir> <!-- /tests/PEAR2 -->
+    <file name="TestInit.php" role="test" />
+   </dir> <!-- /tests -->
+   <file name="README.md" role="doc" />
+  </dir> <!-- / -->
  </contents>
  <dependencies>
   <required>
@@ -100,7 +89,27 @@ Work in progress.
     <name>HTTP_Request2</name>
     <channel>pear.php.net</channel>
    </package>
+   <extension>
+    <name>spl</name>
+   </extension>
   </required>
  </dependencies>
- <phprelease/>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.2.0</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2012-05-05</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>
+Making a pear compatible package.
+   </notes>
+  </release>
+ </changelog>
 </package>
