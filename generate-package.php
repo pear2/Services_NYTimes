@@ -8,9 +8,9 @@ PEAR::setErrorHandling(PEAR_ERROR_DIE);
 $api_version     = '0.2.0';
 $api_state       = 'alpha';
 
-$release_version = $api_version;
+$release_version = '0.2.1';
 $release_state   = 'alpha';
-$release_notes   = "Making a pear compatible package.";
+$release_notes   = "Bugfix (installation)";
 
 $description = "An API wrapper to retrieve meta data of articles on huffingtonpost.com.";
 
@@ -90,7 +90,7 @@ function readDirectory($path) {
 }
 
 $files = array();
-readDirectory(__DIR__ . '/library');
+readDirectory(__DIR__ . '/src');
 
 /**
  * @desc Strip this from the filename for 'addInstallAs'
@@ -108,7 +108,7 @@ foreach ($files as $file) {
         'version'
     );
     $file2 = str_replace($base, '', $file);
-    $package->addInstallAs($file2, str_replace('library/', '', $file2));
+    $package->addInstallAs($file2, str_replace('src/', '', $file2));
 }
 
 $package->setPhpDep('5.3.0');
