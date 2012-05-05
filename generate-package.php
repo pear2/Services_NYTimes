@@ -12,7 +12,7 @@ $release_version = '0.2.1';
 $release_state   = 'alpha';
 $release_notes   = "Bugfix (installation)";
 
-$description = "An API wrapper to retrieve meta data of articles on huffingtonpost.com.";
+$description = "An API wrapper for the NYTimes APIs.";
 
 $package = new PEAR_PackageFileManager2();
 
