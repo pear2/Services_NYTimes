@@ -31,10 +31,20 @@ $package->setOptions(
              'README.md' => 'doc',
          ),
          'ignore'            => array(
-             '.git*',
-             'generate-package.php',
-             '*.tgz',
-             'phpunit.xml',
+            '.git*',
+            'generate-package.php',
+            '*.tgz',
+            '*.tar',
+            '*.zip',
+            'phpunit.xml',
+            'package_compatible.xml',
+            'packagexmlsetup.php',
+            'composer.*',
+            'vendor/',
+            '.travis.yml',
+            'RELEASE*',
+            'API*',
+            'CREDITS',
          )
     )
 );
