@@ -14,9 +14,9 @@
   <active>yes</active>
  </lead>
  <date>2012-05-05</date>
- <time>19:37:46</time>
+ <time>20:14:45</time>
  <version>
-  <release>0.2.2</release>
+  <release>0.2.3</release>
   <api>0.2.0</api>
  </version>
  <stability>
@@ -25,7 +25,7 @@
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
-Bugfix (description :))
+Bugfix (error handling)
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -157,6 +157,21 @@ Bugfix (installation)
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
    <notes>
 Bugfix (description :))
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.3</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2012-05-05</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>
+Bugfix (error handling)
    </notes>
   </release>
  </changelog>
