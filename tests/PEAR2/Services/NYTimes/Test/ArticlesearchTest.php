@@ -43,4 +43,18 @@ class ArticlesearchTest extends TestCase
 
         $this->assertInstanceOf('stdClass', $data);
     }
+
+    public function testUrlSearchNoResult()
+    {
+        $responseObject = $this->setUpResponseObject(
+            'articlesearch',
+            'v1',
+            'by-url-no-result.php'
+        );
+
+        $asMock = $this->getApiMocked('articlesearch', $responseObject);
+        $data   = $asMock->byUrl('http://www.nytimes.com/2011/07/09/business/economy/job-growth-falters-badly-clouding-hope-for-recovery.html?hp');
+
+        $this->assertFalse($data);
+    }
 }

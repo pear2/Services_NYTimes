@@ -150,7 +150,7 @@ abstract class Base
      */
     protected function hazProblem(\HTTP_Request2_Response $response)
     {
-        switch ($response->getStatus) {
+        switch ($response->getStatus()) {
         case 400:
             throw new \RuntimeException("Bad request.");
         case 403:
