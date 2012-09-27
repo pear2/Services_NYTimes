@@ -13,11 +13,11 @@
   <email>till@php.net</email>
   <active>yes</active>
  </lead>
- <date>2012-05-05</date>
- <time>20:14:45</time>
+ <date>2012-09-27</date>
+ <time>19:39:14</time>
  <version>
-  <release>0.2.3</release>
-  <api>0.2.0</api>
+  <release>0.3.0</release>
+  <api>0.3.0</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -25,7 +25,7 @@
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
-Bugfix (error handling)
+Bugfix (when an articlesearch returns no results)
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -56,6 +56,7 @@ Bugfix (error handling)
     <dir name="fixtures">
      <dir name="articlesearch">
       <dir name="v1">
+       <file baseinstalldir="/" name="by-url-no-result.php" role="test" />
        <file baseinstalldir="/" name="by-url.php" role="test" />
       </dir> <!-- /tests/fixtures/articlesearch/v1 -->
      </dir> <!-- /tests/fixtures/articlesearch -->
@@ -172,6 +173,21 @@ Bugfix (description :))
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
    <notes>
 Bugfix (error handling)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.3.0</release>
+    <api>0.3.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2012-09-27</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>
+Bugfix (when an articlesearch returns no results)
    </notes>
   </release>
  </changelog>

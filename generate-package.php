@@ -5,12 +5,12 @@ ini_set('date.timezone', 'Europe/Berlin');
 require_once 'PEAR/PackageFileManager2.php';
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
-$api_version     = '0.2.0';
+$api_version     = '0.3.0';
 $api_state       = 'alpha';
 
-$release_version = '0.2.3';
+$release_version = '0.3.0';
 $release_state   = 'alpha';
-$release_notes   = "Bugfix (error handling)";
+$release_notes   = "Bugfix (when an articlesearch returns no results)";
 
 $description = "An API wrapper for the NYTimes APIs.";
 
