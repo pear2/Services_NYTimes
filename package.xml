@@ -5,8 +5,8 @@
     http://pear.php.net/dtd/package-2.0.xsd">
  <name>PEAR2_Services_NYTimes</name>
  <channel>easybib.github.com/pear</channel>
- <summary>An API wrapper to retrieve meta data of articles on huffingtonpost.com.</summary>
- <description>An API wrapper to retrieve meta data of articles on huffingtonpost.com.</description>
+ <summary>An API wrapper for the NYTimes APIs.</summary>
+ <description>An API wrapper for the NYTimes APIs.</description>
  <lead>
   <name>Till Klampaeckel</name>
   <user>till</user>
@@ -14,9 +14,9 @@
   <active>yes</active>
  </lead>
  <date>2012-05-05</date>
- <time>19:22:33</time>
+ <time>20:14:45</time>
  <version>
-  <release>0.2.0</release>
+  <release>0.2.3</release>
   <api>0.2.0</api>
  </version>
  <stability>
@@ -25,7 +25,7 @@
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
-Making a pear compatible package.
+Bugfix (error handling)
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -33,11 +33,21 @@ Making a pear compatible package.
     <dir name="PEAR2">
      <dir name="Services">
       <dir name="NYTimes">
-       <file name="Articlesearch.php" role="php" />
-       <file name="Base.php" role="php" />
-       <file name="Main.php" role="php" />
-       <file name="Newswire.php" role="php" />
-       <file name="NYTimesInterface.php" role="php" />
+       <file baseinstalldir="/" name="Articlesearch.php" role="php">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file baseinstalldir="/" name="Base.php" role="php">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file baseinstalldir="/" name="Main.php" role="php">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file baseinstalldir="/" name="Newswire.php" role="php">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file baseinstalldir="/" name="NYTimesInterface.php" role="php">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
       </dir> <!-- /src/PEAR2/Services/NYTimes -->
      </dir> <!-- /src/PEAR2/Services -->
     </dir> <!-- /src/PEAR2 -->
@@ -46,16 +56,16 @@ Making a pear compatible package.
     <dir name="fixtures">
      <dir name="articlesearch">
       <dir name="v1">
-       <file name="by-url.php" role="test" />
+       <file baseinstalldir="/" name="by-url.php" role="test" />
       </dir> <!-- /tests/fixtures/articlesearch/v1 -->
      </dir> <!-- /tests/fixtures/articlesearch -->
      <dir name="newswire">
       <dir name="v3">
-       <file name="get-items.php" role="test" />
-       <file name="get-sections.php" role="test" />
-       <file name="shuttle-article-sphp.php" role="test" />
-       <file name="shuttle-article-xml.php" role="test" />
-       <file name="shuttle-article.php" role="test" />
+       <file baseinstalldir="/" name="get-items.php" role="test" />
+       <file baseinstalldir="/" name="get-sections.php" role="test" />
+       <file baseinstalldir="/" name="shuttle-article-sphp.php" role="test" />
+       <file baseinstalldir="/" name="shuttle-article-xml.php" role="test" />
+       <file baseinstalldir="/" name="shuttle-article.php" role="test" />
       </dir> <!-- /tests/fixtures/newswire/v3 -->
      </dir> <!-- /tests/fixtures/newswire -->
     </dir> <!-- /tests/fixtures -->
@@ -63,18 +73,18 @@ Making a pear compatible package.
      <dir name="Services">
       <dir name="NYTimes">
        <dir name="Test">
-        <file name="ArticlesearchTest.php" role="test" />
-        <file name="BaseTest.php" role="test" />
-        <file name="MainTest.php" role="test" />
-        <file name="NewswireTest.php" role="test" />
-        <file name="TestCase.php" role="test" />
+        <file baseinstalldir="/" name="ArticlesearchTest.php" role="test" />
+        <file baseinstalldir="/" name="BaseTest.php" role="test" />
+        <file baseinstalldir="/" name="MainTest.php" role="test" />
+        <file baseinstalldir="/" name="NewswireTest.php" role="test" />
+        <file baseinstalldir="/" name="TestCase.php" role="test" />
        </dir> <!-- /tests/PEAR2/Services/NYTimes/Test -->
       </dir> <!-- /tests/PEAR2/Services/NYTimes -->
      </dir> <!-- /tests/PEAR2/Services -->
     </dir> <!-- /tests/PEAR2 -->
-    <file name="TestInit.php" role="test" />
+    <file baseinstalldir="/" name="TestInit.php" role="test" />
    </dir> <!-- /tests -->
-   <file name="README.md" role="doc" />
+   <file baseinstalldir="/" name="README.md" role="doc" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -94,7 +104,15 @@ Making a pear compatible package.
    </extension>
   </required>
  </dependencies>
- <phprelease />
+ <phprelease>
+  <filelist>
+   <install as="PEAR2/Services/NYTimes/Articlesearch.php" name="src/PEAR2/Services/NYTimes/Articlesearch.php" />
+   <install as="PEAR2/Services/NYTimes/Base.php" name="src/PEAR2/Services/NYTimes/Base.php" />
+   <install as="PEAR2/Services/NYTimes/Main.php" name="src/PEAR2/Services/NYTimes/Main.php" />
+   <install as="PEAR2/Services/NYTimes/NYTimesInterface.php" name="src/PEAR2/Services/NYTimes/NYTimesInterface.php" />
+   <install as="PEAR2/Services/NYTimes/Newswire.php" name="src/PEAR2/Services/NYTimes/Newswire.php" />
+  </filelist>
+ </phprelease>
  <changelog>
   <release>
    <version>
@@ -109,6 +127,51 @@ Making a pear compatible package.
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
    <notes>
 Making a pear compatible package.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.1</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2012-05-05</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>
+Bugfix (installation)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.2</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2012-05-05</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>
+Bugfix (description :))
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.3</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2012-05-05</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>
+Bugfix (error handling)
    </notes>
   </release>
  </changelog>

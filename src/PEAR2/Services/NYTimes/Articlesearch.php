@@ -42,9 +42,11 @@ class Articlesearch extends Base implements NYTimesInterface
     /**
      * Search by URL.
      *
+     * Returns a \stdClass if successful, or false when not (no result).
+     *
      * @param string $url A URL to an article.
      *
-     * @return stdClass
+     * @return stdClass|false
      */
     public function byUrl($url)
     {
@@ -55,6 +57,9 @@ class Articlesearch extends Base implements NYTimesInterface
         $response = $this->makeRequest($uri);
 
         $data = $this->parseResponse($response);
+        if (empty($data->results)) {
+            return false;
+        }
 
         return $data->results[0];
     }
