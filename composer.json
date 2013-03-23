@@ -1,15 +1,17 @@
 {
-    "name": "pear2/Services_NYTimes",
-    "description": "An API wrapper for the NYTimes API",
-    "type": "library",
-    "repositories": [
+    "name": "pear2/services_nytimes",
+    "description": "Service wrapper for retrieving data about articles on nytimes.com.",
+    "license": "BSD-2-Clause",
+    "authors": [
         {
-            "type": "pear",
-            "url": "http://pear.php.net"
+            "name": "till",
+            "email": "till@php.net"
         }
     ],
+    "autoload": {
+        "classmap": ["./src"]
+    },
     "require": {
-        "php": ">=5.3.0",
-        "pear-pear/HTTP_Request2": ">1.0.0"
+
     }
 }
