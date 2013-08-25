@@ -15,6 +15,9 @@
 
 namespace PEAR2\Services\NYTimes\Test;
 
+use HTTP_Request2_Response;
+use PHPUnit_Framework_TestCase;
+
 /**
  * An abstract TestCase class for test cases.
  *
@@ -25,7 +28,7 @@ namespace PEAR2\Services\NYTimes\Test;
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link      https://github.com/pear2/Services_NYTimes
  */
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+abstract class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
      * Helper function to setup the object to be injected into the mock.
@@ -34,13 +37,14 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param string $apiVersion The version of the API.
      * @param string $fixture    The name of the fixture file.
      *
-     * @return \HTTP_Request2_Response
+     * @return HTTP_Request2_Response
      */
     protected function setUpResponseObject($apiName, $apiVersion, $fixture)
     {
-        $data = include __DIR__ . "/../../fixtures/{$apiName}/{$apiVersion}/{$fixture}";
+        $data = include __DIR__ .
+            "/../../fixtures/{$apiName}/{$apiVersion}/{$fixture}";
 
-        $response = new \HTTP_Request2_Response(
+        $response = new HTTP_Request2_Response(
             $data['statusLine'],
             true,
             $data['effectiveUrl']
@@ -53,15 +57,17 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Create a mock object.
      *
-     * @param string                  $apiName        The name of the API, e.g.
+     * @param string                 $apiName        The name of the API, e.g.
                                                       'newswire'.
-     * @param \HTTP_Request2_Response $responseObject A response object to inject.
+     * @param HTTP_Request2_Response $responseObject A response object to inject.
      *
      * @return mixed
      * @see    self::setUpResponseObject()
      */
-    protected function getApiMocked($apiName, \HTTP_Request2_Response $responseObject)
-    {
+    protected function getApiMocked(
+        $apiName,
+        HTTP_Request2_Response $responseObject
+    ) {
         $className = ucfirst(strtolower($apiName));
 
         $mockedClass = $this->getMock(

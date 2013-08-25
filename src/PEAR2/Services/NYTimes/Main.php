@@ -12,6 +12,7 @@
  * @version   SVN: $Id$
  * @link      https://github.com/pear2/Services_NYTimes
  */
+namespace PEAR2\Services\NYTimes;
 
 /**
  * Main class for PEAR2_Services_NYTimes
@@ -24,7 +25,6 @@
  * @link      https://github.com/pear2/Services_NYTimes
  * @link      http://developer.nytimes.com/attribution
  */
-namespace PEAR2\Services\NYTimes;
 class Main
 {
     /**
@@ -33,7 +33,7 @@ class Main
      * @param string $api The name of the API to use.
      * @param string $key The API Key.
      *
-     * @return PEAR2\Services\Base
+     * @return \PEAR2\Services\NYTimes\Base
      */
     public static function factory($api, $key)
     {

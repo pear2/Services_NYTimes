@@ -12,6 +12,16 @@
  * @version   SVN: $Id$
  * @link      https://github.com/pear2/Services_NYTimes
  */
+namespace PEAR2\Services\NYTimes;
+
+use DomainException;
+use DOMDocument;
+use Exception;
+use HTTP_Request2_Response;
+use InvalidArgumentException;
+use LogicException;
+use RangeException;
+use RuntimeException;
 
 /**
  * A class interface for the NYTimes Newswire API.
@@ -25,7 +35,6 @@
  * @link      http://developer.nytimes.com/docs/times_newswire_api/
  * @link      http://developer.nytimes.com/attribution
  */
-namespace PEAR2\Services\NYTimes;
 class Newswire extends Base implements NYTimesInterface
 {
     /**
@@ -51,18 +60,20 @@ class Newswire extends Base implements NYTimesInterface
      * This wraps around {@link self::$searchParams}
      *
      * @param string $method Must start with 'set' or 'get'
-     * @param mixed  $args
+     * @param mixed  $args   The method arguments.
      *
      * @return mixed $this from a set*(), the value from get*().
-     * @throws \LogicException           In case of another method not trapped.
-     * @throws \InvalidArgumentException
-     * @throws \RangeException
+     * @throws LogicException           In case of another method not trapped.
+     * @throws InvalidArgumentException
+     * @throws RangeException
      */
     public function __call($method, $args)
     {
         if (substr($method, 0, 3) == 'set') {
             if (!isset($args[0]) || (empty($args[0]) && $args[0] !== 0)) {
-                throw new \InvalidArgumentException("Cannot set an empty parameter.");
+                throw new InvalidArgumentException(
+                    "Cannot set an empty parameter."
+                );
             }
             $param = $this->getParam($method);
             $value = $args[0];
@@ -71,24 +82,32 @@ class Newswire extends Base implements NYTimesInterface
             case 'limit':
             case 'offset':
                 if (!is_int($value)) {
-                    throw new \InvalidArgumentException("{ucfirst($param)} must be an integer.");
+                    throw new InvalidArgumentException(
+                        "{ucfirst($param)} must be an integer."
+                    );
                 }
                 if ($param == 'limit' && $value > 20) {
-                    throw new \RangeException("Limit cannot be greater than 20");
+                    throw new RangeException("Limit cannot be greater than 20");
                 }
                 break;
             case 'period':
                 if (!is_int($value)) {
-                    throw new \InvalidArgumentException("Period must be an integer between 0 and 720");
+                    throw new InvalidArgumentException(
+                        "Period must be an integer between 0 and 720"
+                    );
                 }
                 if ($value > 720) {
-                    throw new \RangeException("Period cannot be greater than 720");
+                    throw new RangeException(
+                        "Period cannot be greater than 720"
+                    );
                 }
                 break;
             case 'source':
                 static $supportedSources = array('all', 'nyt', 'iht');
                 if (!in_array($value, $supportedSources)) {
-                    throw new \InvalidArgumentException("Unsupported source: {$value}");
+                    throw new InvalidArgumentException(
+                        "Unsupported source: {$value}"
+                    );
                 }
                 break;
             }
@@ -99,7 +118,7 @@ class Newswire extends Base implements NYTimesInterface
             $param = $this->getParam($method);
             return $this->searchParams[$param];
         }
-        throw new \LogicException("Problem?");
+        throw new LogicException("Problem?");
     }
 
     /**
@@ -172,7 +191,7 @@ class Newswire extends Base implements NYTimesInterface
         $data     = $this->parseResponse($response);
 
         if ($data['num_results'] == 0 || $data['status'] != 'OK') {
-            throw new \RuntimeException("Error: currently no sections are returned.");
+            throw new RuntimeException("Error: currently no sections are returned.");
         }
 
         $this->setResponseFormat($currentFormat);
@@ -194,13 +213,15 @@ class Newswire extends Base implements NYTimesInterface
      *
      * @return string
      * @see    self::__call()
-     * @throws \DomainException When someone tries to set an unknown parameter.
+     * @throws DomainException When someone tries to set an unknown parameter.
      */
     protected function getParam($method)
     {
         $param = strtolower(substr($method, 3));
         if (!isset($this->searchParams[$param])) {
-            throw new \DomainException("Unknown parameter: {$param} (from {$method})");
+            throw new DomainException(
+                "Unknown parameter: {$param} (from {$method})"
+            );
         }
         return $param;
     }
@@ -233,13 +254,15 @@ class Newswire extends Base implements NYTimesInterface
     }
 
     /**
-     * @param \HTTP_Request2_Response $response
+     * Parses a response
+     * 
+     * @param HTTP_Request2_Response $response The response to parse
      *
      * @return mixed
      * @uses   parent::isSuccessful()
      * @uses   parent::hazProblem()
      */
-    protected function parseResponse(\HTTP_Request2_Response $response)
+    protected function parseResponse(HTTP_Request2_Response $response)
     {
         if (!$this->isSuccessful($response)) {
             $this->hazProblem($response);
@@ -248,12 +271,12 @@ class Newswire extends Base implements NYTimesInterface
         if ($this->format == 'json') {
             $data = json_decode($body);
         } elseif ($this->format == 'xml') {
-            $data = new \DOMDocument();
+            $data = new DOMDocument();
             $data->loadXML($body);
         } elseif ($this->format == 'sphp') {
             $data = unserialize($body);
         } else {
-            throw new \Exception("Not implemented.");
+            throw new Exception("Not implemented.");
         }
         return $data;
     }

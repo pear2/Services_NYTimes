@@ -42,6 +42,9 @@ class MainTest extends TestCase
 
     /**
      * Test the factory.
+     * 
+     * @param string $api       The factory argument.
+     * @param string $className The class the factory produces.
      *
      * @return void
      *
@@ -55,6 +58,8 @@ class MainTest extends TestCase
 
     /**
      * @expectedException \DomainException
+     * 
+     * @return void
      */
     public function testException()
     {
