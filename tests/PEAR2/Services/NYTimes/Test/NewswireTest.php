@@ -123,11 +123,16 @@ class NewswireTest extends TestCase
 
         $response = $nwMock
             ->setResponseFormat('xml')
-            ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
+            ->getItemByUrl(
+                'http://www.nytimes.com/2011/07/09/science/space/09shuttle.html'
+            );
 
         $this->assertInstanceOf('\DOMDocument', $response);
 
-        $this->assertEquals('OK', $response->getElementsByTagName('status')->item(0)->nodeValue);
+        $this->assertEquals(
+            'OK',
+            $response->getElementsByTagName('status')->item(0)->nodeValue
+        );
     }
 
     /**
@@ -147,7 +152,9 @@ class NewswireTest extends TestCase
 
         $response = $nwMock
             ->setResponseFormat('sphp')
-            ->getItemByUrl('http://www.nytimes.com/2011/07/09/science/space/09shuttle.html');
+            ->getItemByUrl(
+                'http://www.nytimes.com/2011/07/09/science/space/09shuttle.html'
+            );
 
         $this->assertInternalType('array', $response);
         $this->assertArrayHasKey('status', $response);
@@ -173,10 +180,6 @@ class NewswireTest extends TestCase
         $this->assertInternalType('array', $sections);
     }
 
-    /**
-     *
-     * @return void
-     */
     public function testGetItems()
     {
         $responseObject = $this->setUpResponseObject(
@@ -211,8 +214,8 @@ class NewswireTest extends TestCase
     /**
      * Make sure set*() and get*() work.
      *
-     * @param string $param
-     * @param mixed  $value
+     * @param string $param The setter/getter name.
+     * @param mixed  $value The value to set/get.
      *
      * @return void
      *
@@ -223,7 +226,10 @@ class NewswireTest extends TestCase
         $methodSet = 'set' . ucfirst($param);
         $methodGet = 'get' . ucfirst($param);
 
-        $this->assertInstanceOf('\PEAR2\Services\NYTimes\Newswire', $this->nw->$methodSet($value));
+        $this->assertInstanceOf(
+            '\PEAR2\Services\NYTimes\Newswire',
+            $this->nw->$methodSet($value)
+        );
         $this->assertEquals($value, $this->nw->$methodGet());
     }
 
@@ -251,6 +257,10 @@ class NewswireTest extends TestCase
 
     /**
      * Test exceptions from __call().
+     * 
+     * @param string     $method    Method triggering the exception.
+     * @param int|string $value     The value triggering the exception.
+     * @param string     $exception The exception that should be thrown.
      *
      * @return void
      *

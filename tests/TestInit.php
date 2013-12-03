@@ -9,11 +9,12 @@ require_once __DIR__ . '/PEAR2/Services/NYTimes/Test/TestCase.php';
 /**
  * testAutoloader
  *
- * @param string $className
+ * @param string $className The class to load.
  *
  * @return boolean
  */
-function testAutoloader($className) {
+function testAutoloader($className)
+{
     if (substr($className, 0, 22) == 'PEAR2\Services\NYTimes') {
 
         $file  = str_replace("\\", '/', $className);

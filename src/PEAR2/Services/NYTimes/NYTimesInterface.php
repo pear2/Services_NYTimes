@@ -12,6 +12,7 @@
  * @version   SVN: $Id$
  * @link      https://github.com/pear2/Services_NYTimes
  */
+namespace PEAR2\Services\NYTimes;
 
 /**
  * Interface for all APIs. We'll use this later to force a class API.
@@ -24,8 +25,13 @@
  * @link      https://github.com/pear2/Services_NYTimes
  * @link      http://developer.nytimes.com/attribution
  */
-namespace PEAR2\Services\NYTimes;
 interface NYTimesInterface
 {
+
+    /**
+     * __construct()
+     *
+     * @param string $key The API key.
+     */
     public function __construct($key);
 }

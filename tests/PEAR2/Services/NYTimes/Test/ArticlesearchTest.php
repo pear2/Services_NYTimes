@@ -27,9 +27,6 @@ namespace PEAR2\Services\NYTimes\Test;
  */
 class ArticlesearchTest extends TestCase
 {
-    /**
-     * @return void
-     */
     public function testUrlSearch()
     {
         $responseObject = $this->setUpResponseObject(

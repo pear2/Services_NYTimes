@@ -12,6 +12,10 @@
  * @version   SVN: $Id$
  * @link      https://github.com/pear2/Services_NYTimes
  */
+namespace PEAR2\Services\NYTimes;
+
+use HTTP_Request2_Response;
+use stdClass;
 
 /**
  * A class interface for the NYTimes Article Search API.
@@ -25,7 +29,6 @@
  * @link      http://developer.nytimes.com/docs/read/article_search_api
  * @link      http://developer.nytimes.com/attribution
  */
-namespace PEAR2\Services\NYTimes;
 class Articlesearch extends Base implements NYTimesInterface
 {
     /**
@@ -34,7 +37,8 @@ class Articlesearch extends Base implements NYTimesInterface
     protected $apiVersion = 'v1';
 
     /**
-     * @var string $baseUri The base URI for all requests against the Article Search API.
+     * @var string $baseUri The base URI for all requests against the
+     *     Article Search API.
      * @see self::getUri()
      */
     protected $baseUri = 'http://api.nytimes.com/svc/search/v1/article';
@@ -50,8 +54,10 @@ class Articlesearch extends Base implements NYTimesInterface
      */
     public function byUrl($url)
     {
-        $uri = $this->getUri(array(
-            'query' => 'url:' . $this->cleanUrl($url))
+        $uri = $this->getUri(
+            array(
+                'query' => 'url:' . $this->cleanUrl($url)
+            )
         );
 
         $response = $this->makeRequest($uri);
@@ -83,7 +89,14 @@ class Articlesearch extends Base implements NYTimesInterface
         return $endpoint;
     }
 
-    protected function parseResponse(\HTTP_Request2_Response $response)
+    /**
+     * Parses a response
+     * 
+     * @param HTTP_Request2_Response $response The response to parse
+     * 
+     * @return mixed The parsed JSON body.
+     */
+    protected function parseResponse(HTTP_Request2_Response $response)
     {
         if (!$this->isSuccessful($response)) {
             $this->hazProblem($response);

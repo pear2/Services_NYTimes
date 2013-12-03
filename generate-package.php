@@ -75,11 +75,12 @@ $package->addMaintainer(
 /**
  * Generate the list of files in {@link $GLOBALS['files']}
  *
- * @param string $path
+ * @param string $path The path to the directory to read.
  *
  * @return void
  */
-function readDirectory($path) {
+function readDirectory($path)
+{
     foreach (glob($path . '/*') as $file) {
         if (!is_dir($file)) {
             $GLOBALS['files'][] = $file;
@@ -123,7 +124,7 @@ $package->addExtensionDep('required', 'spl');
 $package->setPearInstallerDep('1.9.4');
 $package->generateContents();
 
-if (   isset($_GET['make'])
+if (isset($_GET['make'])
     || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')
 ) {
     $package->writePackageFile();

@@ -31,6 +31,8 @@ class BaseTest extends TestCase
 {
     /**
      * @expectedException InvalidArgumentException
+     * 
+     * @return void
      */
     public function testFormat()
     {
@@ -45,6 +47,9 @@ class BaseTest extends TestCase
         $req = new \HTTP_Request2;
         $req->setAdapter('mock');
 
-        $this->assertInstanceOf('PEAR2\Services\NYTimes\Newswire', $newswire->accept($req));
+        $this->assertInstanceOf(
+            'PEAR2\Services\NYTimes\Newswire',
+            $newswire->accept($req)
+        );
     }
 }
