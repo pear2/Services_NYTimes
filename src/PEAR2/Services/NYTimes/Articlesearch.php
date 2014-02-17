@@ -41,7 +41,7 @@ class Articlesearch extends Base implements NYTimesInterface
      *     Article Search API.
      * @see self::getUri()
      */
-    protected $baseUri = 'http://api.nytimes.com/svc/search/v1/article';
+    protected $baseUri = 'http://api.nytimes.com/svc/search/v2/articlesearch.json';
 
     /**
      * Search by URL.
@@ -54,20 +54,18 @@ class Articlesearch extends Base implements NYTimesInterface
      */
     public function byUrl($url)
     {
-        $uri = $this->getUri(
-            array(
-                'query' => 'url:' . $this->cleanUrl($url)
-            )
-        );
+        $uri = $this->getUri(array(
+            'fq' => sprintf('web_url:"%s"', $this->cleanUrl($url)
+        )));
 
         $response = $this->makeRequest($uri);
 
         $data = $this->parseResponse($response);
-        if (empty($data->results)) {
+        if (empty($data->response->docs)) {
             return false;
         }
 
-        return $data->results[0];
+        return $data->response->docs[0];
     }
 
     /**
